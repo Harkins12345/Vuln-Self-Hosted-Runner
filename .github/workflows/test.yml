@@ -10,12 +10,8 @@ on:
   pull_request:
     branches: [ "main" ]
 
-  workflow_call:
-    inputs:
-        token:
-          required: true
-          type: string
-
+  workflow_run:
+    workflows: [DevRun]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
